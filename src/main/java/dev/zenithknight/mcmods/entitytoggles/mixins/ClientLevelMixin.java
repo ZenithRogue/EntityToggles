@@ -3,6 +3,8 @@ package dev.zenithknight.mcmods.entitytoggles.mixins;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Block;
@@ -30,9 +32,13 @@ public class ClientLevelMixin {
         assert this.minecraft.gameMode != null;
         if (this.minecraft.gameMode.getPlayerMode() == GameType.CREATIVE) {
             assert this.minecraft.player != null;
-            CustomData customData = this.minecraft.player.getMainHandItem().getComponents().get(CUSTOM_DATA);
+            ItemStack itemStack = this.minecraft.player.getMainHandItem();
+            CustomData customData = itemStack.getComponents().get(CUSTOM_DATA);
             if (customData != null && customData.matchedBy(movingPistonData)) {
                 cir.setReturnValue(Blocks.MOVING_PISTON);
+            }
+            if (itemStack.is(Items.STRUCTURE_VOID)) {
+                cir.setReturnValue(Blocks.STRUCTURE_VOID);
             }
         }
     }

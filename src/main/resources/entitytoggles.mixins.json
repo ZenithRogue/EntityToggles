@@ -12,6 +12,7 @@
     "MinecartFurnaceMixin",
     "MovingPistonMixin",
     "PandaMixin",
+    "StructureVoidMixin",
     "ThrownEggMixin",
     "ThrownEnderpearlMixin",
     "TrapDoorMixin"
