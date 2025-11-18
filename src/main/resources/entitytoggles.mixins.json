@@ -1,0 +1,28 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.zenithknight.mcmods.entitytoggles.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AbstractMinecartMixin",
+    "ChickenMixin",
+    "FlowerPotBlockMixin",
+    "GhastShootFireballGoalMixin",
+    "LivingEntityMixin",
+    "MinecartFurnaceMixin",
+    "MovingPistonMixin",
+    "PandaMixin",
+    "ThrownEggMixin",
+    "ThrownEnderpearlMixin",
+    "TrapDoorMixin"
+  ],
+  "client": [
+    "ClientLevelMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
