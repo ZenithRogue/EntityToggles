@@ -1,7 +1,5 @@
 package dev.zenithknight.mcmods.entitytoggles.mixins;
 
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.FlyingMob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.level.Level;

@@ -1,12 +1,9 @@
 package dev.zenithknight.mcmods.entitytoggles.mixins;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.component.DataComponentType;
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Marker;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.BlockGetter;
@@ -17,6 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.spongepowered.asm.mixin.Mixin;
@@ -31,24 +29,20 @@ import static net.minecraft.core.component.DataComponents.CUSTOM_DATA;
 
 @Mixin(MovingPistonBlock.class)
 public class MovingPistonMixin {
-    Level level = null;
+    private static CompoundTag movingPistonData = new CompoundTag();
+    static {
+        movingPistonData.putBoolean("movingPiston", true);
+    }
     @Inject(method = "getShape", at = @At("HEAD"), cancellable = true)
     public void getShapeMixin(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext, CallbackInfoReturnable<VoxelShape> cir) {
         boolean render = false;
-        BlockEntity blockEntity = blockGetter.getBlockEntity(blockPos);
 //        System.out.println("Getting Shape");
-        if (blockEntity != null || level != null) {
-            if (blockEntity != null) {
-                level = Objects.requireNonNull(blockEntity.getLevel());
-            }
-//            System.out.println("Checking for Players");
-//            level.addParticle(ParticleTypes.ANGRY_VILLAGER, blockPos.getX(), blockPos.getY(), blockPos.getZ(), 1,1,1);
-            List<Player> players = level.getEntitiesOfClass(Player.class, new AABB(blockPos).inflate(8));
-            for (Player player : players) {
-//                System.out.println("Checking Player");
-                CustomData item = player.getWeaponItem().getComponents().get(CUSTOM_DATA);
+        if (collisionContext instanceof EntityCollisionContext) {
+            Entity entity = ((EntityCollisionContext) collisionContext).getEntity();
+            if (entity != null) {
+                CustomData item = entity.getWeaponItem().getComponents().get(CUSTOM_DATA);
 //                System.out.println(item);
-                if (item != null && item.contains("movingPiston")) {
+                if (item != null && item.matchedBy(movingPistonData)) {
 //                    System.out.println("Found Moving Piston");
                     render = true;
                 }
