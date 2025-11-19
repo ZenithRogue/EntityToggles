@@ -10,6 +10,7 @@ public class EntityToggles implements ModInitializer {
     public static final GameRules.Key<GameRules.BooleanValue> EGGS_HATCH = GameRuleRegistry.register("eggsHatch", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(true));
     public static final GameRules.Key<GameRules.BooleanValue> ENDER_PEARL_DAMAGE = GameRuleRegistry.register("enderPearlDamage", GameRules.Category.MISC, GameRuleFactory.createBooleanRule(true));
     public static final GameRules.Key<GameRules.BooleanValue> ENDERMITE_SPAWN = GameRuleRegistry.register("spawnEndermite", GameRules.Category.SPAWNING, GameRuleFactory.createBooleanRule(true));
+    public static final GameRules.Key<GameRules.BooleanValue> PARROTS_FOLLOW = GameRuleRegistry.register("parrotsFollow", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(true));
 
     @Override
     public void onInitialize() {

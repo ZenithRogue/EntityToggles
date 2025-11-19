@@ -12,6 +12,7 @@
     "MinecartFurnaceMixin",
     "MovingPistonMixin",
     "PandaMixin",
+    "ParrotMixin",
     "StructureVoidMixin",
     "ThrownEggMixin",
     "ThrownEnderpearlMixin",
@@ -25,5 +26,6 @@
   },
   "overwrites": {
     "requireAnnotations": true
-  }
+  },
+  "mixinextras": {"minVersion": "0.5.0"}
 }
