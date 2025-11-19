@@ -15,8 +15,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.Set;
-
 import static net.minecraft.core.component.DataComponents.CUSTOM_DATA;
 
 @Mixin(ClientLevel.class)

@@ -1,19 +1,11 @@
 package dev.zenithknight.mcmods.entitytoggles;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.mojang.brigadier.StringReader;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.mojang.serialization.JsonOps;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.ChatFormatting;
-import net.minecraft.commands.arguments.item.ItemArgument;
-import net.minecraft.commands.arguments.item.ItemInput;
-import net.minecraft.commands.arguments.item.ItemParser;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -23,7 +15,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.component.TypedEntityData;
 import net.minecraft.world.level.GameRules;
-import net.minecraft.world.level.ItemLike;
 
 import static net.minecraft.core.component.DataComponents.*;
 import static net.minecraft.world.item.CreativeModeTabs.OP_BLOCKS;
