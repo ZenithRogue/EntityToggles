@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "entitytoggles:item/moving_piston"
+  }
+}

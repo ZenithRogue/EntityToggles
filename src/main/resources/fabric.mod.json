@@ -3,8 +3,10 @@
   "id": "entitytoggles",
   "version": "${version}",
   "name": "EntityToggles",
-  "description": "",
-  "authors": [],
+  "authors": [
+    "ZenithKnight"
+  ],
+  "description": "Modify entity behaviors/states via gamerules and entity tags",
   "contact": {},
   "license": "MIT",
   "icon": "assets/entitytoggles/icon.png",
