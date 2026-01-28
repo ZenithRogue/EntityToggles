@@ -1,4 +1,4 @@
-package dev.zenithknight.mcmods.entitytoggles.mixins;
+package dev.zenithknight.mcmods.entitytoggles.mixins.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

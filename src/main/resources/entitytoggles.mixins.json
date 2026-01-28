@@ -4,21 +4,27 @@
   "package": "dev.zenithknight.mcmods.entitytoggles.mixins",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "AbstractIllagerMixin",
     "AbstractMinecartMixin",
     "ChickenMixin",
-    "FlowerPotBlockMixin",
-    "FrogspawnBlockMixin",
     "GhastShootFireballGoalMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
+    "MannequinMixin",
     "MinecartFurnaceMixin",
-    "MovingPistonMixin",
     "PandaMixin",
     "ParrotMixin",
-    "StructureVoidMixin",
     "ThrownEggMixin",
     "ThrownEnderpearlMixin",
-    "TrapDoorMixin"
+    "block.CoralBlockMixin",
+    "block.CoralFanBlockMixin",
+    "block.CoralPlantBlockMixin",
+    "block.CoralWallFanBlockMixin",
+    "block.FlowerPotBlockMixin",
+    "block.FrogspawnBlockMixin",
+    "block.MovingPistonMixin",
+    "block.StructureVoidMixin",
+    "block.TrapDoorMixin"
   ],
   "client": [
     "ClientLevelMixin"
@@ -30,5 +36,6 @@
     "requireAnnotations": true
   },
   "mixinextras": {
-    "minVersion": "0.5.0"}
+    "minVersion": "0.5.0"
+  }
 }

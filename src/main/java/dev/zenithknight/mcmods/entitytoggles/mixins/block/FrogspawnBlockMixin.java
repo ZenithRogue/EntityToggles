@@ -1,4 +1,4 @@
-package dev.zenithknight.mcmods.entitytoggles.mixins;
+package dev.zenithknight.mcmods.entitytoggles.mixins.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -15,7 +15,7 @@ import static dev.zenithknight.mcmods.entitytoggles.EntityToggles.FROGSPAWN_HATC
 public class FrogspawnBlockMixin {
     @Inject(method = "hatchFrogspawn", at = @At("HEAD"), cancellable = true)
     private void hatchFrogspawnMixin(ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource, CallbackInfo ci) {
-        if (serverLevel.getGameRules().getBoolean(FROGSPAWN_HATCH)) {
+        if (!serverLevel.getGameRules().getBoolean(FROGSPAWN_HATCH)) {
             ci.cancel();
         }
     }
