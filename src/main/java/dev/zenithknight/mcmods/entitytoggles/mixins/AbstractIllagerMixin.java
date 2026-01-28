@@ -58,7 +58,6 @@ public abstract class AbstractIllagerMixin extends LivingEntity implements Gener
         if (!valueInput.read("data", CustomData.CODEC).isEmpty()) {
             this.offers = (MerchantOffers)valueInput.child("data").get().read("Offers", MerchantOffers.CODEC).orElse(null);
         }
-        System.out.println(this.offers);
         this.interaction = (EntityTogglesCodecs.PlayerAction)valueInput.read("interaction", EntityTogglesCodecs.PlayerAction.CODEC).orElse(null);
     }
 

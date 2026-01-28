@@ -47,7 +47,7 @@ public interface GenericMerchant extends Merchant, Npc {
 
     @Override
     default boolean stillValid(Player player) {
-        return this.getTradingPlayer() == player;
+        return true;
     }
 
     default void startTrading(Player player, Component displayName) {
