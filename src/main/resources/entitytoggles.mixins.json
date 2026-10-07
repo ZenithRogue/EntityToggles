@@ -4,6 +4,7 @@
   "package": "dev.zenithknight.mcmods.entitytoggles.mixins",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "AbstractHorseMixin",
     "AbstractIllagerMixin",
     "AbstractMinecartMixin",
     "ChickenMixin",
@@ -15,6 +16,7 @@
     "MinecartFurnaceMixin",
     "PandaMixin",
     "ParrotMixin",
+    "SlimeMixin",
     "ThrownEggMixin",
     "ThrownEnderpearlMixin",
     "VillagerMixin",
@@ -26,7 +28,8 @@
     "block.FrogspawnBlockMixin",
     "block.MovingPistonMixin",
     "block.StructureVoidMixin",
-    "block.TrapDoorMixin"
+    "block.TrapDoorMixin",
+    "block.WallBlockMixin"
   ],
   "client": [
     "ClientLevelMixin"

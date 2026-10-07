@@ -25,6 +25,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.component.TypedEntityData;
 import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.storage.loot.LootTable;
 
 import java.util.UUID;
 
@@ -42,6 +43,8 @@ public class EntityToggles implements ModInitializer {
     public static final GameRules.Key<GameRules.BooleanValue> PARROTS_FOLLOW = GameRuleRegistry.register("parrotsFollow", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(true));
     public static final GameRules.Key<GameRules.BooleanValue> FROGSPAWN_HATCH = GameRuleRegistry.register("frogspawnHatch", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(true));
     public static final GameRules.Key<GameRules.BooleanValue> CORAL_DRIES = GameRuleRegistry.register("coralDries", GameRules.Category.MISC, GameRuleFactory.createBooleanRule(true));
+    public static final GameRules.Key<GameRules.BooleanValue> BABY_VILLAGER_INTERACT = GameRuleRegistry.register("babyVillagerInteract", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(false));
+    public static final GameRules.Key<GameRules.BooleanValue> LOBOTOMIZE_VILLAGERS = GameRuleRegistry.register("lobotomizeVillagers", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(false));
 
     private static void modifyEntries(FabricItemGroupEntries entries) {
         assert Minecraft.getInstance().level != null;
@@ -64,6 +67,7 @@ public class EntityToggles implements ModInitializer {
         entries.accept(itemStack);
 
         entries.accept(createStack("debug_stick[lore=[{\"color\":\"light_purple\",\"italic\":true,\"text\":\"This one can interact with Moving Pistons\"}],custom_data={movingPiston:1b}]", provider));
+        entries.accept(createStack("wooden_axe[lore=[{\"italic\":false,\"text\":\"World Edit Wand\"}]]", provider));
     }
 
     @Override

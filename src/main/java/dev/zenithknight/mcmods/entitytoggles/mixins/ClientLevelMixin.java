@@ -38,6 +38,16 @@ public class ClientLevelMixin {
             if (itemStack.is(Items.STRUCTURE_VOID)) {
                 cir.setReturnValue(Blocks.STRUCTURE_VOID);
             }
+//            if (itemStack.is(Items.COPPER_BARS.waxed())) {
+//                cir.setReturnValue(Blocks.COPPER_BARS.waxed());
+//            }
+//            if (itemStack.is(Items.PLAYER_HEAD)) {
+//                if (this.minecraft.level.getGameTime() % 2 == 1) {
+//                    cir.setReturnValue(Blocks.PLAYER_WALL_HEAD);
+//                } else {
+//                    cir.setReturnValue(Blocks.PLAYER_HEAD);
+//                }
+//            }
         }
     }
 }

@@ -36,6 +36,10 @@ public class InteractionMixin implements GenericMerchant {
         this.tradingPlayer = player;
     }
 
+    public boolean isClientSide() {
+        return ((Interaction) (Object) this).level().isClientSide();
+    }
+
     @Override
     public MerchantOffers getOffers() {
         Entity entity = (Entity) (Object) this;
@@ -63,8 +67,10 @@ public class InteractionMixin implements GenericMerchant {
     @Inject(method = "interact", at = @At("HEAD"))
     public void interact(Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResult> cir) {
         Entity entity = (Entity) (Object) this;
-        if (!this.getOffers().isEmpty() && !entity.getTags().contains("hideTrades")) {
-            this.startTrading(player, entity.getDisplayName());
+        if (!isClientSide()) {
+            if (!this.getOffers().isEmpty() && !entity.getTags().contains("hideTrades")) {
+                this.startTrading(player, entity.getDisplayName());
+            }
         }
     }
 
