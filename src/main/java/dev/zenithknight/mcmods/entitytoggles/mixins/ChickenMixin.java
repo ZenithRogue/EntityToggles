@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.animal.Chicken;
+import net.minecraft.world.entity.animal.chicken.Chicken;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -14,9 +14,9 @@ import static dev.zenithknight.mcmods.entitytoggles.EntityToggles.CHICKENS_LAY_E
 
 @Mixin(Chicken.class)
 public class ChickenMixin {
-    @WrapOperation(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/animal/Chicken;dropFromGiftLootTable(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/resources/ResourceKey;Ljava/util/function/BiConsumer;)Z"))
+    @WrapOperation(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/animal/chicken/Chicken;dropFromGiftLootTable(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/resources/ResourceKey;Ljava/util/function/BiConsumer;)Z"))
     public boolean layEgg(Chicken chicken, ServerLevel serverLevel, ResourceKey resourceKey, BiConsumer biConsumer, Operation<Boolean> original){
-        if ((serverLevel.getGameRules().getBoolean(CHICKENS_LAY_EGGS) || chicken.getTags().contains("layEggs")) && !chicken.getTags().contains("noEggs")) {
+        if ((serverLevel.getGameRules().get(CHICKENS_LAY_EGGS) || chicken.entityTags().contains("layEggs")) && !chicken.entityTags().contains("noEggs")) {
             return original.call(chicken, serverLevel, resourceKey, biConsumer);
         } else {
             return false;

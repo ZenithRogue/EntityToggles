@@ -6,7 +6,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.projectile.ThrownEnderpearl;
+import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownEnderpearl;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -17,10 +17,10 @@ import static dev.zenithknight.mcmods.entitytoggles.EntityToggles.ENDER_PEARL_DA
 public class ThrownEnderpearlMixin {
     @WrapWithCondition(method = "onHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;hurtServer(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;F)Z"))
     private boolean enderpearlHit(ServerPlayer instance, ServerLevel serverLevel, DamageSource damageSource, float f) {
-        return serverLevel.getGameRules().getBoolean(ENDER_PEARL_DAMAGE);
+        return serverLevel.getGameRules().get(ENDER_PEARL_DAMAGE);
     }
     @ModifyExpressionValue(method = "onHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerLevel;isSpawningMonsters()Z"))
     private boolean endermiteSpawn(boolean original, @Local ServerLevel serverLevel) {
-        return serverLevel.getGameRules().getBoolean(ENDERMITE_SPAWN) && original;
+        return serverLevel.getGameRules().get(ENDERMITE_SPAWN) && original;
     }
 }

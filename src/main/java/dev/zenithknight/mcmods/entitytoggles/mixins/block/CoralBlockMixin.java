@@ -16,7 +16,7 @@ import static dev.zenithknight.mcmods.entitytoggles.EntityToggles.CORAL_DRIES;
 public class CoralBlockMixin {
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
     private void tickMixin(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource, CallbackInfo ci){
-        if (!serverLevel.getGameRules().getBoolean(CORAL_DRIES)) {
+        if (!serverLevel.getGameRules().get(CORAL_DRIES)) {
             ci.cancel();
         }
     }

@@ -22,7 +22,7 @@ public class WallBlockMixin {
 //        floatRef.set();
 //    }
 
-    @ModifyExpressionValue(method = "method_66472", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/phys/shapes/Shapes;empty()Lnet/minecraft/world/phys/shapes/VoxelShape;"))
+    @ModifyExpressionValue(method = "lambda$makeShapes$0", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/phys/shapes/Shapes;empty()Lnet/minecraft/world/phys/shapes/VoxelShape;"))
     private static VoxelShape replaceEmpty(VoxelShape original, @Local BlockState blockState) {
         return Block.column((double)6.0F, (double)0.0F, (double) 16.0F);
     }

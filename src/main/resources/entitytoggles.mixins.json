@@ -4,6 +4,7 @@
   "package": "dev.zenithknight.mcmods.entitytoggles.mixins",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "AbstractCubeMobMixin",
     "AbstractHorseMixin",
     "AbstractIllagerMixin",
     "AbstractMinecartMixin",
@@ -16,7 +17,6 @@
     "MinecartFurnaceMixin",
     "PandaMixin",
     "ParrotMixin",
-    "SlimeMixin",
     "ThrownEggMixin",
     "ThrownEnderpearlMixin",
     "VillagerMixin",

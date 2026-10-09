@@ -10,16 +10,16 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.animal.Cat;
-import net.minecraft.world.entity.animal.Panda;
-import net.minecraft.world.entity.animal.Parrot;
+import net.minecraft.world.entity.animal.feline.Cat;
+import net.minecraft.world.entity.animal.panda.Panda;
+import net.minecraft.world.entity.animal.parrot.Parrot;
 import net.minecraft.world.entity.decoration.Mannequin;
-import net.minecraft.world.entity.monster.AbstractIllager;
-import net.minecraft.world.entity.monster.Pillager;
-import net.minecraft.world.entity.monster.Vindicator;
-import net.minecraft.world.entity.monster.Zombie;
-import net.minecraft.world.entity.npc.AbstractVillager;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.monster.illager.AbstractIllager;
+import net.minecraft.world.entity.monster.illager.Pillager;
+import net.minecraft.world.entity.monster.illager.Vindicator;
+import net.minecraft.world.entity.monster.zombie.Zombie;
+import net.minecraft.world.entity.npc.villager.AbstractVillager;
+import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -56,9 +56,9 @@ public abstract class VillagerMixin extends AbstractVillager {
         }
     }
 
-    @WrapWithCondition(method = "mobInteract", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/npc/Villager;startTrading(Lnet/minecraft/world/entity/player/Player;)V"))
+    @WrapWithCondition(method = "mobInteract", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/npc/villager/Villager;startTrading(Lnet/minecraft/world/entity/player/Player;)V"))
     private boolean hideTrades(Villager villager, Player player){
-        return !villager.getTags().contains("hideTrades");
+        return !villager.entityTags().contains("hideTrades");
     }
 
 //    @ModifyExpressionValue(method = "mobInteract", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/npc/Villager;isBaby()Z"))
@@ -75,12 +75,12 @@ public abstract class VillagerMixin extends AbstractVillager {
 //            return isBaby;
 //        }
 //    }
-    @Inject(method = "mobInteract", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/npc/Villager;setUnhappy()V"))
+    @Inject(method = "mobInteract", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/npc/villager/Villager;setUnhappy()V"))
     private void babyInteractions(Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResult> cir) {
         Villager villager = (Villager) (Object) this;
         if (!villager.level().isClientSide()) {
             ServerLevel level = (ServerLevel) villager.level();
-            if (level.getGameRules().getBoolean(BABY_VILLAGER_INTERACT)) {
+            if (level.getGameRules().get(BABY_VILLAGER_INTERACT)) {
                 player.awardStat(Stats.TALKED_TO_VILLAGER);
             }
         }
@@ -89,7 +89,7 @@ public abstract class VillagerMixin extends AbstractVillager {
     @Inject(method = "registerBrainGoals", at = @At("HEAD"), cancellable = true)
     private void registerBrainGoalsMixin(Brain<Villager> brain, CallbackInfo ci) {
         if (!this.level().isClientSide()) {
-            if (((ServerLevel) this.level()).getGameRules().getBoolean(LOBOTOMIZE_VILLAGERS)) {
+            if (((ServerLevel) this.level()).getGameRules().get(LOBOTOMIZE_VILLAGERS)) {
                 ci.cancel();
             }
         }
@@ -97,7 +97,7 @@ public abstract class VillagerMixin extends AbstractVillager {
 
     public void registerGoals() {
         if (!this.level().isClientSide()) {
-            if (((ServerLevel) this.level()).getGameRules().getBoolean(LOBOTOMIZE_VILLAGERS)) {
+            if (((ServerLevel) this.level()).getGameRules().get(LOBOTOMIZE_VILLAGERS)) {
                 this.goalSelector.addGoal(0, new FloatGoal(this));
                 this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, (double)0.5F));
                 this.goalSelector.addGoal(4, new PanicGoal(this, 0.75F));

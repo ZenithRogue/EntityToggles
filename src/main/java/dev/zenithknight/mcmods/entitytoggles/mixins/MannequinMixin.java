@@ -11,7 +11,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.decoration.Mannequin;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
@@ -19,6 +19,7 @@ import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,7 +29,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.UUID;
 
 @Mixin(Mannequin.class)
-public class MannequinMixin extends Avatar implements GenericMerchant {
+public abstract class MannequinMixin extends Avatar implements GenericMerchant {
     protected MerchantOffers offers;
     private EntityTogglesCodecs.PlayerAction interaction;
     @Nullable
@@ -67,9 +68,9 @@ public class MannequinMixin extends Avatar implements GenericMerchant {
         this.interaction = (EntityTogglesCodecs.PlayerAction)valueInput.read("interaction", EntityTogglesCodecs.PlayerAction.CODEC).orElse(null);
     }
 
-    public InteractionResult interact(Player player, InteractionHand interactionHand) {
+    public InteractionResult interact(Player player, InteractionHand interactionHand, final Vec3 location) {
         if (interactionHand == InteractionHand.MAIN_HAND) {
-            super.interact(player, interactionHand);
+            super.interact(player, interactionHand, location);
             this.interaction = new EntityTogglesCodecs.PlayerAction(player.getUUID(), this.level().getGameTime());
             ItemStack itemStack = player.getItemInHand(interactionHand);
             if (!this.level().isClientSide()) {
@@ -77,7 +78,7 @@ public class MannequinMixin extends Avatar implements GenericMerchant {
                 if (bl) {
                     return InteractionResult.CONSUME;
                 }
-                if (!this.getTags().contains("hideTrades")) {
+                if (!this.entityTags().contains("hideTrades")) {
                     this.startTrading(player, this.getDisplayName());
                 }
             }

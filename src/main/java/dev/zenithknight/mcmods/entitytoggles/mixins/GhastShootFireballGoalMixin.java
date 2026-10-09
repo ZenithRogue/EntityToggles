@@ -14,7 +14,7 @@ public abstract class GhastShootFireballGoalMixin extends Goal {
     private Ghast ghast;
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
     public void tickMixin(CallbackInfo ci) {
-        if(ghast.getTags().contains("passive")){
+        if(ghast.entityTags().contains("passive")){
             ci.cancel();
         }
     }

@@ -18,7 +18,7 @@ import static dev.zenithknight.mcmods.entitytoggles.EntityToggles.CORAL_DRIES;
 public class CoralPlantBlockMixin {
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
     private void tickMixin(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource, CallbackInfo ci){
-        if (!serverLevel.getGameRules().getBoolean(CORAL_DRIES)) {
+        if (!serverLevel.getGameRules().get(CORAL_DRIES)) {
             ci.cancel();
         }
     }
@@ -26,7 +26,7 @@ public class CoralPlantBlockMixin {
     @Inject(method = "onPlace", at = @At("HEAD"), cancellable = true)
     private void onPlaceMixin(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState2, boolean bl, CallbackInfo ci){
         MinecraftServer server = level.getServer();
-        if (server != null && !server.getGameRules().getBoolean(CORAL_DRIES)) {
+        if (server != null && !server.getGameRules().get(CORAL_DRIES)) {
             ci.cancel();
         }
     }

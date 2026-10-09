@@ -12,6 +12,7 @@ import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -65,10 +66,10 @@ public class InteractionMixin implements GenericMerchant {
         }
     }
     @Inject(method = "interact", at = @At("HEAD"))
-    public void interact(Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResult> cir) {
+    public void interact(Player player, InteractionHand hand, Vec3 location, CallbackInfoReturnable<InteractionResult> cir) {
         Entity entity = (Entity) (Object) this;
         if (!isClientSide()) {
-            if (!this.getOffers().isEmpty() && !entity.getTags().contains("hideTrades")) {
+            if (!this.getOffers().isEmpty() && !entity.entityTags().contains("hideTrades")) {
                 this.startTrading(player, entity.getDisplayName());
             }
         }

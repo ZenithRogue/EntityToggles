@@ -2,7 +2,7 @@ package dev.zenithknight.mcmods.entitytoggles.mixins;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.LevelTimeAccess;
+//import net.minecraft.world.level.LevelTimeAccess;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

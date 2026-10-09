@@ -23,14 +23,14 @@ public class LivingEntityMixin {
     @Inject(method = "isPushable", at = @At("HEAD"), cancellable = true)
     public void isPushable(CallbackInfoReturnable<Boolean> cir) {
         LivingEntity entity = ((LivingEntity)(Object)this);
-        if (entity.getTags().contains("noCollide")) {
+        if (entity.entityTags().contains("noCollide")) {
             cir.setReturnValue(false);
         }
     }
     @Inject(method = "tick", at = @At("HEAD"))
     private void tickMixin(CallbackInfo ci){
         LivingEntity entity = (LivingEntity) (Object) this;
-        Set tags = entity.getTags();
+        Set tags = entity.entityTags();
         if (tags.contains("sleeping")) {
             entity.setPose(Pose.SLEEPING);
         }

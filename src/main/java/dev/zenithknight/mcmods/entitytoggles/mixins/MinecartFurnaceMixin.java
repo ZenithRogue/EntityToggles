@@ -1,6 +1,6 @@
 package dev.zenithknight.mcmods.entitytoggles.mixins;
 
-import net.minecraft.world.entity.vehicle.MinecartFurnace;
+import net.minecraft.world.entity.vehicle.minecart.MinecartFurnace;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -14,7 +14,7 @@ public class MinecartFurnaceMixin {
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
     public void tickMixin(CallbackInfo ci) {
         MinecartFurnace furnace = ((MinecartFurnace) (Object) this);
-        if(furnace.getTags().contains("coal")){
+        if(furnace.entityTags().contains("coal")){
             this.fuel = 100;
         }
     }

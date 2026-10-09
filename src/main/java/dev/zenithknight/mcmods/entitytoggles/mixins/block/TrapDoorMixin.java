@@ -20,13 +20,13 @@ import java.util.List;
 public class TrapDoorMixin {
     @Inject(method = "useWithoutItem", at = @At("HEAD"), cancellable = true)
     private void useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult, CallbackInfoReturnable<InteractionResult> cir) {
-        if (player.getTags().contains("noTrapdoor")) {
+        if (player.entityTags().contains("noTrapdoor")) {
             List<Marker> markers = level.getEntitiesOfClass(Marker.class, new AABB(blockPos).inflate(0.01));
             boolean cancel = true;
 //            System.out.println("Player Blocked");
             for (Marker marker : markers) {
 //                System.out.println("Checking Marker");
-                if (marker.getTags().contains("trapdoor")) {
+                if (marker.entityTags().contains("trapdoor")) {
                     cancel = false;
                 }
             }
