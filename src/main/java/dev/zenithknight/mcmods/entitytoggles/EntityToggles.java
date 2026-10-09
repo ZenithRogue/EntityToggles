@@ -13,22 +13,17 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.commands.arguments.item.ItemInput;
 import net.minecraft.commands.arguments.item.ItemParser;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.UUIDUtil;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.TagParser;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.entity.Interaction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.component.TypedEntityData;
 import net.minecraft.world.level.gamerules.GameRule;
 import net.minecraft.world.level.gamerules.GameRuleCategory;
-import net.minecraft.world.level.storage.loot.LootTable;
 
-import java.util.UUID;
 
 import static net.minecraft.core.component.DataComponents.*;
 import static net.minecraft.world.item.CreativeModeTabs.OP_BLOCKS;
@@ -37,15 +32,6 @@ import static net.minecraft.world.level.block.entity.BlockEntityTypes.COMMAND_BL
 
 public class EntityToggles implements ModInitializer {
     public static final String MOD_ID = "entitytoggles";
-//    public static final GameRules.Key<GameRules.BooleanValue> CHICKENS_LAY_EGGS = GameRuleRegistry.register("chickensLayEggs", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(true));
-//    public static final GameRules.Key<GameRules.BooleanValue> EGGS_HATCH = GameRuleRegistry.register("eggsHatch", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(true));
-//    public static final GameRules.Key<GameRules.BooleanValue> ENDER_PEARL_DAMAGE = GameRuleRegistry.register("enderPearlDamage", GameRules.Category.MISC, GameRuleFactory.createBooleanRule(true));
-//    public static final GameRules.Key<GameRules.BooleanValue> ENDERMITE_SPAWN = GameRuleRegistry.register("spawnEndermite", GameRules.Category.SPAWNING, GameRuleFactory.createBooleanRule(true));
-//    public static final GameRules.Key<GameRules.BooleanValue> PARROTS_FOLLOW = GameRuleRegistry.register("parrotsFollow", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(true));
-//    public static final GameRules.Key<GameRules.BooleanValue> FROGSPAWN_HATCH = GameRuleRegistry.register("frogspawnHatch", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(true));
-//    public static final GameRules.Key<GameRules.BooleanValue> CORAL_DRIES = GameRuleRegistry.register("coralDries", GameRules.Category.MISC, GameRuleFactory.createBooleanRule(true));
-//    public static final GameRules.Key<GameRules.BooleanValue> BABY_VILLAGER_INTERACT = GameRuleRegistry.register("babyVillagerInteract", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(false));
-//    public static final GameRules.Key<GameRules.BooleanValue> LOBOTOMIZE_VILLAGERS = GameRuleRegistry.register("lobotomizeVillagers", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(false));
 
     public static final GameRule<Boolean> CHICKENS_LAY_EGGS = GameRuleBuilder.forBoolean(true).category(GameRuleCategory.MOBS).buildAndRegister(EntityToggles.id("chickens_lay_eggs"));
     public static final GameRule<Boolean> EGGS_HATCH = GameRuleBuilder.forBoolean(true).category(GameRuleCategory.MOBS).buildAndRegister(EntityToggles.id("eggs_hatch"));

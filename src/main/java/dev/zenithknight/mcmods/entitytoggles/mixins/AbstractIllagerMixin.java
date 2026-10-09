@@ -3,7 +3,6 @@ package dev.zenithknight.mcmods.entitytoggles.mixins;
 import dev.zenithknight.mcmods.entitytoggles.EntityTogglesCodecs;
 import dev.zenithknight.mcmods.entitytoggles.GenericMerchant;
 import net.minecraft.core.UUIDUtil;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
